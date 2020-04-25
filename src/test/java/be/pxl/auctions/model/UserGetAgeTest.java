@@ -14,6 +14,7 @@ public class UserGetAgeTest {
 	public void returnsCorrectAgeWhenHavingBirthdayToday() {
 		User user = new User();
 		user.setDateOfBirth(LocalDate.now().minusYears(YEARS));
+
 		assertEquals(user.getAge(), YEARS);
 	}
 
@@ -21,14 +22,15 @@ public class UserGetAgeTest {
 	public void returnsCorrectAgeWhenHavingBirthdayTomorrow() {
 		User user = new User();
 		user.setDateOfBirth(LocalDate.now().minusYears(YEARS).plusDays(1));
-		assertEquals(user.getAge(), YEARS -1 );
+
+		assertEquals(user.getAge(), YEARS -1);
 	}
 
 	@Test
 	public void returnsCorrectAgeWhenBirthdayWasYesterday() {
 		User user = new User();
-		user.setDateOfBirth(LocalDate.now().minusYears(YEARS).plusDays(1));
-		assertEquals(user.getAge(), YEARS -1 );
+		user.setDateOfBirth(LocalDate.now().minusYears(YEARS).minusDays(1));
+		assertEquals(user.getAge(), YEARS);
 	}
 
 }

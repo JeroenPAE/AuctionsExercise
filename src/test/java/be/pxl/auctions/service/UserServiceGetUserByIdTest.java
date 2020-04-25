@@ -15,12 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 public class UserServiceGetUserByIdTest {
-	private static final long USER_ID = 5l;
+	private static final long USER_ID = 5L;
 
+	//Mock word gebruikt om aan te duiden welke doa we willen "overnemen"
 	@Mock
 	private UserDao userDao;
+
+	//Met InjectMocks gaan we zeggen in welke classen we willen dat die doa word overgenomen.
 	@InjectMocks
 	private UserService userService;
+
 	private User user;
 
 	@BeforeEach
@@ -35,13 +39,17 @@ public class UserServiceGetUserByIdTest {
 
 	@Test
 	public void returnsNullWhenNoUserWithGivenIdFound() {
+		// Hier word gezegd welke waarde een bepaalde methode van die doa moet terug geven.
 		when(userDao.findUserById(USER_ID)).thenReturn(null);
+		// En daarna kan dit dan worden getest.
 		assertNull(userService.getUserById(USER_ID));
 	}
 
 	@Test
 	public void returnsUserWhenUserFoundWithGivenId() {
+		// Hier word gezegd welke waarde een bepaalde methode van die doa moet terug geven.
 		when(userDao.findUserById(USER_ID)).thenReturn(user);
+		// En daarna kan dit dan worden getest.
 		assertEquals(user, userService.getUserById(USER_ID));
 	}
 }
